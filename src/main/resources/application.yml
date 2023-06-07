@@ -5,6 +5,9 @@ spring:
     password: rlafhrdnjs1
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+server:
+  port: 80
+
 #  jpa:
 #    hibernate:
 #      ddl-auto: create
@@ -16,4 +19,5 @@ spring:
 #logging:
 #  level:
 #    org.hibernate.SQL: debug
+
 #    org.hibernate.type: trace # ?? ????? ?? ????? ???
