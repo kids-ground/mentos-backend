@@ -1,0 +1,62 @@
+name: Prod - Deploy to Amazon ECS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  push-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      # Repo checkout
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # JDK 환경 셋팅
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+          cache: gradle
+      
+      # Gradle Permission
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # AWS Config
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-2
+    
+      # ECR Login
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      # Build App
+      - name: Gradle Build
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: build
+
+      # Docker build & Push
+      - name: Build and Push docker image to Amazon ECR
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: mentos
+          IMAGE_TAG: latest
+        run: |
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
+      # ECS 배포 자동화
+      # 1. ECS Service 업데이트
+      #   - Get ECS task definition
+      #   - Create ECS task definition version
+      #   - Deploy ECS task definition
+      # 2. CodePipeLine 자동화
