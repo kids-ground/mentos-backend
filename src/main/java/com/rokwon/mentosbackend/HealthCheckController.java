@@ -9,6 +9,6 @@ public class HealthCheckController {
     @GetMapping("/health-check")
     @ResponseBody
     public String home() {
-        return "welcome mentos backend server~!";
+        return "welcome mentos backend server~!!!";
     }
 }
