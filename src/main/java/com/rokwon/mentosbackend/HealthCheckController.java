@@ -9,6 +9,6 @@ public class HealthCheckController {
     @GetMapping("/health-check")
     @ResponseBody
     public String home() {
-        return "CD complete!";
+        return "Health Check with CodePipeline";
     }
 }
