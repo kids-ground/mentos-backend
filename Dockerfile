@@ -1,4 +1,4 @@
-FROM openjdk:11.0.6-jre
+FROM openjdk:17-jdk-slim
 
 EXPOSE 80
 
