@@ -1,0 +1,9 @@
+jar.enabled = false
+
+dependencies {
+    implementation project(':mentos-domain')
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+}
+
