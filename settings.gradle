@@ -1,1 +1,6 @@
-rootProject.name = 'mentos-backend'
+rootProject.name = 'backend'
+include(
+    'mentos-domain',
+    'mentos-api'
+)
+
