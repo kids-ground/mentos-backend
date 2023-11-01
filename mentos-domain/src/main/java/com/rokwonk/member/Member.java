@@ -9,6 +9,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.List;
+
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 @Data
@@ -46,4 +48,8 @@ public class Member extends BaseTimeEntity {
 
     @Column(length = 30)
     private String currentJobDetail;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    @JoinColumn(name="member_id")
+    private List<MemberDevice> memberDeviceList;
 }
