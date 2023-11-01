@@ -8,5 +8,4 @@ public class MentosDomainApplication {
     public static void main(String[] args) {
         SpringApplication.run(MentosDomainApplication.class, args);
     }
-
 }
