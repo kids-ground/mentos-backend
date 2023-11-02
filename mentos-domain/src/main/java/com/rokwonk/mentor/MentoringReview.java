@@ -1,6 +1,7 @@
 package com.rokwonk.mentor;
 
 
+import com.rokwonk.common.entity.BaseTimeEntity;
 import com.rokwonk.member.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MentoringReview {
+public class MentoringReview extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "mentoring_review_id")

@@ -1,5 +1,6 @@
 package com.rokwonk.post;
 
+import com.rokwonk.common.entity.BaseTimeEntity;
 import com.rokwonk.member.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Post {
+public class Post extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "post_id")
@@ -30,6 +31,9 @@ public class Post {
 
     @Column(length = 30)
     private String title;
+
+    @Column(length = 30)
+    private String tags;
 
     @Column(columnDefinition = "TEXT")
     private String description;

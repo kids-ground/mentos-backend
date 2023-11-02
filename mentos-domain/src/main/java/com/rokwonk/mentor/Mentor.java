@@ -1,6 +1,7 @@
 package com.rokwonk.mentor;
 
 
+import com.rokwonk.common.entity.BaseTimeEntity;
 import com.rokwonk.member.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Mentor {
+public class Mentor extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -41,6 +42,8 @@ public class Mentor {
 
     @Column(length = 30)
     private String jobDetail;
+
+    private Integer careerYears;
 
     @Column(columnDefinition = "TEXT")
     private String kakaoChatLink;

@@ -1,5 +1,6 @@
 package com.rokwonk.post;
 
+import com.rokwonk.common.entity.BaseTimeEntity;
 import com.rokwonk.member.Member;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -15,7 +16,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Comment {
+public class Comment extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)

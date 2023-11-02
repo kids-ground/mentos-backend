@@ -1,6 +1,7 @@
 package com.rokwonk.mentor;
 
 
+import com.rokwonk.common.entity.BaseTimeEntity;
 import com.rokwonk.mentor.vo.CareerAuthStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Career {
+public class Career extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "career_id")
