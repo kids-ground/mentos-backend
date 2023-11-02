@@ -41,7 +41,7 @@ public class SecurityConfig {
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenService, authenticationTokenProvider), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new AuthenticationExceptionFilter(objectMapper), JwtAuthenticationFilter.class)
                 .exceptionHandling()
-                .authenticationEntryPoint(new RestAuthenticationEntryPoint());
+                .authenticationEntryPoint(new RestAuthenticationEntryPoint(objectMapper));
 
         http
                 .authorizeHttpRequests( request -> request
