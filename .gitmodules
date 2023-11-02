@@ -1,0 +1,3 @@
+[submodule "mentos-backend-config"]
+	path = mentos-backend-config
+	url = https://github.com/kids-ground/mentos-backend-config.git

@@ -89,3 +89,9 @@ Footer
 *.zip
 *.tar.gz
 *.rar
+
+### Configuration ###
+**/src/**/*.yaml
+**/src/**/*.json
+!application-dev.yaml
+!src/test/**/*.yml

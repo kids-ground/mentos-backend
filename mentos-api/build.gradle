@@ -13,3 +13,11 @@ dependencies {
 
     runtimeOnly 'com.mysql:mysql-connector-j'
 }
+
+task copyFiles(type: Copy) {
+    copy {
+        from '../mentos-backend-config'
+        include "*.yml", "*.yaml"
+        into 'src/main/resources'
+    }
+}
