@@ -53,5 +53,5 @@ jobs:
           REPOSITORY: mentos
           IMAGE_TAG: latest
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG ./mentos-api
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
