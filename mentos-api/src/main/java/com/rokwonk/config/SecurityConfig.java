@@ -1,9 +1,14 @@
 package com.rokwonk.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.rokwonk.security.exception.RestAuthenticationEntryPoint;
+import com.rokwonk.security.filter.AuthenticationExceptionFilter;
+import com.rokwonk.security.filter.JwtAuthenticationFilter;
+import com.rokwonk.security.provider.AuthenticationTokenProvider;
+import com.rokwonk.service.JwtTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -21,6 +26,9 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+    private final JwtTokenService jwtTokenService;
+    private final AuthenticationTokenProvider authenticationTokenProvider;
+    private final ObjectMapper objectMapper;
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable);
@@ -29,10 +37,11 @@ public class SecurityConfig {
         http.formLogin().disable();
         http.httpBasic().disable();
 
-//                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider, authenticationTokenProvider), UsernamePasswordAuthenticationFilter.class)
-//                .addFilterBefore(new AuthenticationExceptionFilter(objectMapper), JwtAuthenticationFilter.class)
-//                .exceptionHandling()
-//                .authenticationEntryPoint(new RestAuthenticationEntryPoint());
+        http
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenService, authenticationTokenProvider), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new AuthenticationExceptionFilter(objectMapper), JwtAuthenticationFilter.class)
+                .exceptionHandling()
+                .authenticationEntryPoint(new RestAuthenticationEntryPoint());
 
         http
                 .authorizeHttpRequests( request -> request
