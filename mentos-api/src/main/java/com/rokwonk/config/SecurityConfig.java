@@ -61,6 +61,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests( request -> request
                         .requestMatchers(
                             "/test/*",
+                                "/health-check",
                                 "/auth/login"
                         ).permitAll()
                 )
