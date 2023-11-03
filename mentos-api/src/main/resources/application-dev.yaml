@@ -29,3 +29,8 @@ security:
   jwt:
     secretKey: qiuwehailwejflqijwiohfslkanf193eaildsf1dofaeujdfh
 
+feign:
+  kakao:
+    url: https://kapi.kakao.com
+  apple:
+    url: https://appleid.apple.com
