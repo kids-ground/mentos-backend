@@ -38,6 +38,8 @@ public class AuthService {
             case APPLE -> getAppleUniqueUserId(request.token());
         };
 
+        log.info("유저 정보 체크");
+
         Long memberId = memberService.getMemberByOAuth(oauthType, uniqueId)
                 .orElseGet(() -> memberService.createMember(oauthType, uniqueId));
         String accessToken = jwtTokenService.createToken(memberId);
