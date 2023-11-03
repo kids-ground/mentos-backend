@@ -1,5 +1,6 @@
 package com.rokwonk.controller;
 
+import com.rokwonk.dto.request.AuthEmailRequest;
 import com.rokwonk.dto.request.LoginRequest;
 import com.rokwonk.dto.response.TokenResponse;
 import com.rokwonk.service.AuthService;
@@ -21,4 +22,16 @@ public class AuthController {
         TokenResponse tokenResponse = authService.loginOrSignUp(request);
         return ResponseEntity.ok(tokenResponse);
     }
+
+//    @PostMapping("/email")
+//    public ResponseEntity<AuthEmailRequest> signUpOrSignIn(@RequestBody LoginRequest request) {
+//        TokenResponse tokenResponse = authService.loginOrSignUp(request);
+//        return ResponseEntity.ok(tokenResponse);
+//    }
+//
+//    @PostMapping("/verify")
+//    public ResponseEntity<TokenResponse> signUpOrSignIn(@RequestBody LoginRequest request) {
+//        TokenResponse tokenResponse = authService.loginOrSignUp(request);
+//        return ResponseEntity.ok(tokenResponse);
+//    }
 }
