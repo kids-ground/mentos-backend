@@ -2,7 +2,6 @@ package com.rokwonk.controller;
 
 import com.rokwonk.common.annotation.RequestUser;
 import com.rokwonk.dto.internal.UserInfo;
-import com.rokwonk.dto.request.AuthEmailRequest;
 import com.rokwonk.dto.response.ImageUrlUploadResponse;
 import com.rokwonk.dto.response.SimpleResponse;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +20,7 @@ public class ImageController {
         return ResponseEntity.ok(new ImageUrlUploadResponse("https://aaaaaaa.com"));
     }
 
-    @GetMapping("/url")
+    @GetMapping("/upload")
     public ResponseEntity<SimpleResponse> uploadImage(
             @RequestUser UserInfo requestUser,
             @RequestPart MultipartFile image
