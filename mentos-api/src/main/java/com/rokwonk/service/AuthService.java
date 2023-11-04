@@ -32,6 +32,7 @@ public class AuthService {
     private final KakaoClient kakaoClient;
 
     public TokenResponse loginOrSignUp(LoginRequest request) {
+        log.info("GET!");
         LoginType oauthType = request.loginType();
         String uniqueId = switch (oauthType) {
             case KAKAO -> getKakaoUniqueUserId(request.token());
@@ -40,11 +41,12 @@ public class AuthService {
 
         log.info("유저 정보 체크");
 
-        Long memberId = memberService.getMemberByOAuth(oauthType, uniqueId)
-                .orElseGet(() -> memberService.createMember(oauthType, uniqueId));
+        Long memberId = memberService.getMemberByOAuth(oauthType, uniqueId).orElse(null);
+        Boolean isSignup = memberId == null;
+        memberId = memberService.createMember(oauthType, uniqueId);
         String accessToken = jwtTokenService.createToken(memberId);
 
-        return new TokenResponse(accessToken, null);
+        return new TokenResponse(accessToken, "", isSignup);
     }
 
     private String getAppleUniqueUserId(String identityToken) {

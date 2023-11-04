@@ -40,6 +40,7 @@ public class MemberService {
         MemberOAuthId memberOAuthId = new MemberOAuthId(oauthType.toOAuthType(), id);
         Member member = Member.builder()
                 .profileImage(new MemberProfileImage())
+                .nickname("뉴유저")
                 .build();
 
         memberRepository.save(member);

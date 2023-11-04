@@ -2,6 +2,7 @@ package com.rokwonk.dto.response;
 
 public record TokenResponse(
         String accessToken,
-        String refreshToken
+        String refreshToken,
+        Boolean isSignup
 ) {
 }
