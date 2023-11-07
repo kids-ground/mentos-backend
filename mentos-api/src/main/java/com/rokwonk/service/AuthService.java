@@ -43,7 +43,7 @@ public class AuthService {
 
         Long memberId = memberService.getMemberByOAuth(oauthType, uniqueId).orElse(null);
         Boolean isSignup = memberId == null;
-        memberId = memberService.createMember(oauthType, uniqueId);
+        if (memberId == null) memberId = memberService.createMember(oauthType, uniqueId);
         String accessToken = jwtTokenService.createToken(memberId);
 
         return new TokenResponse(accessToken, "", isSignup);

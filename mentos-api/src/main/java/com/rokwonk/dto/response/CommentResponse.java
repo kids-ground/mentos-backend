@@ -1,5 +1,6 @@
 package com.rokwonk.dto.response;
 
+import com.rokwonk.member.Member;
 import com.rokwonk.post.Comment;
 
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ public record CommentResponse(
                 comment.getContent(),
                 comment.getCreatedAt(),
                 new MemberResponse(comment.getWriter()),
-                new MemberResponse(comment.getTaggedMember())
+                comment.getTaggedMember() != null ? new MemberResponse(comment.getTaggedMember()) : null
         );
     }
 }

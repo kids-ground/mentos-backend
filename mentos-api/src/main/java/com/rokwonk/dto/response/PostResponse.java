@@ -20,7 +20,7 @@ public record PostResponse(
     public PostResponse(Post post) {
         this(
                 post.getId(),
-                Arrays.stream(post.getTags().split(" ")).toList(),
+                Arrays.stream(post.getTags().split(",")).toList(),
                 post.getTitle(),
                 post.getDescription(),
                 post.getHit(),

@@ -3,7 +3,7 @@ package com.rokwonk.dto.response;
 import com.rokwonk.member.Member;
 
 public record MemberResponse(
-        Long id,
+        Long memberId,
         String nickname,
         String profileUrl,
         String thumbnailUrl,

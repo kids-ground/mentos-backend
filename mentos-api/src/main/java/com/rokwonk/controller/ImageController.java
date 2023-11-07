@@ -20,11 +20,12 @@ public class ImageController {
         return ResponseEntity.ok(new ImageUrlUploadResponse("https://aaaaaaa.com"));
     }
 
-    @GetMapping("/upload")
-    public ResponseEntity<SimpleResponse> uploadImage(
+    @PostMapping("/upload")
+    public ResponseEntity<ImageUrlUploadResponse> uploadImage(
             @RequestUser UserInfo requestUser,
             @RequestPart MultipartFile image
     ) {
-        return ResponseEntity.ok(new SimpleResponse(200, "업로드 성공"));
+        return ResponseEntity.ok(new ImageUrlUploadResponse("https://aaaaaaa.com"));
+//        return ResponseEntity.ok(new SimpleResponse(200, "업로드 성공"));
     }
 }
