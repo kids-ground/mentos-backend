@@ -37,7 +37,7 @@ public class MemberService {
 
     @Transactional
     public Long createMember(LoginType oauthType, String id) {
-        MemberOAuthId memberOAuthId = new MemberOAuthId(oauthType.toOAuthType(), id);
+        MemberOAuthId memberOAuthId = new MemberOAuthId(oauthType.toOAuthType(), id); 
         Member member = Member.builder()
                 .profileImage(new MemberProfileImage(
                         "https://images.velog.io/images/chang626/post/c9533c4f-adbb-4411-bce4-b09293d64fbf/A03EACB4-4DFA-439A-A3FE-084635A89FE6.png",
